@@ -26,6 +26,10 @@ public class LatchAuthenticator implements Authenticator {
         String string = config.getConfig().get("key");
         System.out.println("crear latch con: "+string);
         
+        Latch latch = Latch.with("123", "123");
+        StatusResponse status = latch.status("123");
+        System.out.println(status);
+        
         context.failure(AuthenticationFlowError.USER_DISABLED);
         Response challenge = context.form().createForm("account-locked.ftl");
         context.challenge(challenge);
